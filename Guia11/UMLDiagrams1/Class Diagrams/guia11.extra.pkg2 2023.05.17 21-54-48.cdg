@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="guia11.extra.pkg2">
+  <ClassDiagramComponents>
+    <Class name="Asiento" package="guia11.extra.pkg2" visibility="public" xPosition="20.0" yPosition="20.0">
+      <Fields>
+        <Field name="letra" type="String" visibility="private"/>
+        <Field name="numero" type="int" visibility="private"/>
+        <Field name="persona" type="Espectador" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="letra"/>
+          <Argument type="int" name="numero"/>
+          <Argument type="Espectador" name="persona"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getLetra" returnType="String" visibility="public"/>
+        <Method name="setLetra" returnType="void" visibility="public">
+          <Argument type="String" name="letra"/>
+        </Method>
+        <Method name="getNumero" returnType="int" visibility="public"/>
+        <Method name="setNumero" returnType="void" visibility="public">
+          <Argument type="int" name="numero"/>
+        </Method>
+        <Method name="getPersona" returnType="Espectador" visibility="public"/>
+        <Method name="setPersona" returnType="void" visibility="public">
+          <Argument type="Espectador" name="persona"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Cine" package="guia11.extra.pkg2" visibility="public" xPosition="320.0" yPosition="20.0">
+      <Fields>
+        <Field name="sala" type="Sala" visibility="private"/>
+        <Field name="pelicula" type="Pelicula" visibility="private"/>
+        <Field name="entrada" type="float" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Sala" name="sala"/>
+          <Argument type="Pelicula" name="pelicula"/>
+          <Argument type="float" name="entrada"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getSala" returnType="Sala" visibility="public"/>
+        <Method name="setSala" returnType="void" visibility="public">
+          <Argument type="Sala" name="sala"/>
+        </Method>
+        <Method name="getPelicula" returnType="Pelicula" visibility="public"/>
+        <Method name="setPelicula" returnType="void" visibility="public">
+          <Argument type="Pelicula" name="pelicula"/>
+        </Method>
+        <Method name="getEntrada" returnType="float" visibility="public"/>
+        <Method name="setEntrada" returnType="void" visibility="public">
+          <Argument type="float" name="entrada"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Espectador" package="guia11.extra.pkg2" visibility="public" xPosition="620.0" yPosition="20.0">
+      <Fields>
+        <Field name="nombre" type="String" visibility="private"/>
+        <Field name="edad" type="int" visibility="private"/>
+        <Field name="dinero" type="float" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="nombre"/>
+          <Argument type="int" name="edad"/>
+          <Argument type="float" name="dinero"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getNombre" returnType="String" visibility="public"/>
+        <Method name="setNombre" returnType="void" visibility="public">
+          <Argument type="String" name="nombre"/>
+        </Method>
+        <Method name="getEdad" returnType="int" visibility="public"/>
+        <Method name="setEdad" returnType="void" visibility="public">
+          <Argument type="int" name="edad"/>
+        </Method>
+        <Method name="getDinero" returnType="float" visibility="public"/>
+        <Method name="setDinero" returnType="void" visibility="public">
+          <Argument type="float" name="dinero"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Main" package="guia11.extra.pkg2" visibility="public" xPosition="920.0" yPosition="20.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Pelicula" package="guia11.extra.pkg2" visibility="public" xPosition="1220.0" yPosition="20.0">
+      <Fields>
+        <Field name="titulo" type="String" visibility="private"/>
+        <Field name="minuto" type="int" visibility="private"/>
+        <Field name="edadMinima" type="int" visibility="private"/>
+        <Field name="director" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="titulo"/>
+          <Argument type="int" name="minuto"/>
+          <Argument type="int" name="edadMinima"/>
+          <Argument type="String" name="director"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getTitulo" returnType="String" visibility="public"/>
+        <Method name="setTitulo" returnType="void" visibility="public">
+          <Argument type="String" name="titulo"/>
+        </Method>
+        <Method name="getMinuto" returnType="int" visibility="public"/>
+        <Method name="setMinuto" returnType="void" visibility="public">
+          <Argument type="int" name="minuto"/>
+        </Method>
+        <Method name="getEdadMinima" returnType="int" visibility="public"/>
+        <Method name="setEdadMinima" returnType="void" visibility="public">
+          <Argument type="int" name="edadMinima"/>
+        </Method>
+        <Method name="getDirector" returnType="String" visibility="public"/>
+        <Method name="setDirector" returnType="void" visibility="public">
+          <Argument type="String" name="director"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Sala" package="guia11.extra.pkg2" visibility="public" xPosition="1520.0" yPosition="20.0">
+      <Fields>
+        <Field name="matriz" type="Asiento[][]" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="getMatriz" returnType="Asiento[][]" visibility="public"/>
+        <Method name="setMatriz" returnType="void" visibility="public">
+          <Argument type="Asiento[][]" name="matriz"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Servicio" package="guia11.extra.pkg2" visibility="public" xPosition="1820.0" yPosition="20.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="generarAsiento" returnType="void" visibility="public">
+          <Argument type="Cine" name="cine"/>
+        </Method>
+        <Method name="ubicarEspecadores" returnType="void" visibility="public">
+          <Argument type="Cine" name="cine"/>
+        </Method>
+        <Method name="tablaFinal" returnType="void" visibility="public">
+          <Argument type="Cine" name="cine"/>
+        </Method>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="persona" source="guia11.extra.pkg2.Asiento" target="guia11.extra.pkg2.Espectador" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="guia11.extra.pkg2.Cine" target="guia11.extra.pkg2.Pelicula" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="guia11.extra.pkg2.Servicio" target="guia11.extra.pkg2.Cine" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="pelicula" source="guia11.extra.pkg2.Cine" target="guia11.extra.pkg2.Pelicula" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="guia11.extra.pkg2.Asiento" target="guia11.extra.pkg2.Espectador" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="guia11.extra.pkg2.Cine" target="guia11.extra.pkg2.Sala" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="sala" source="guia11.extra.pkg2.Cine" target="guia11.extra.pkg2.Sala" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="guia11.extra.pkg2.Sala" target="guia11.extra.pkg2.Asiento" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>

@@ -1,0 +1,88 @@
+gracias jere!!
+nos vmeos
+Eduardo Rocc 21:55
+package Servicios;
+
+import Entidades.CuentaBancaria_Entid;
+import java.util.Scanner;
+
+/**
+ *
+ * @author rocc0
+ */
+public class CuentaBancariaServicio {
+    public CuentaBancaria_Entid crearCuenta(){
+        CuentaBancaria_Entid cc = new CuentaBancaria_Entid();
+        Scanner leer = new Scanner(System.in).useDelimiter("\n");
+        System.out.print("ingrese dni del cliente: ");
+        cc.setDniCliente(123456789);
+        System.out.println(" ");
+        System.out.print("ingrese nro de cuenta: ");
+        cc.setNumeroCuenta(123);
+        System.out.println(" ");
+        System.out.print("dinero inicial: " );
+        cc.setSaldoInicial(500);
+        return cc;
+    }
+    
+//    UNIFICAR EL realizarTransaccion AL RESTO DEL CODIGO
+//    public void realizarTransaccion(CuentaBancaria_Entid cc, double monto) {
+//        // Realizar la transacción
+//        double nuevoSaldo = cc.getSaldoActual() - monto;
+//        // Actualizar el saldo actual
+//        cc.setSaldoActual(nuevoSaldo);
+//    }
+    public CuentaBancaria_Entid infoCuenta(){
+        CuentaBancaria_Entid info = new CuentaBancaria_Entid();
+        System.out.print("DNI del Cliente: " + info.getDniCliente());
+        System.out.println(" ");
+        System.out.println("Nro de Cuenta: " + info.getNumeroCuenta());
+        System.out.println(" ");
+        System.out.println("Saldo Inicial: " + info.getSaldoInicial());
+        System.out.println(" ");
+        System.out.println("Saldo Actual: " + info.getNuevoActual());
+        return info;
+    }
+    
+    public void ActualizoNuevoSaldo(CuentaBancaria_Entid cc){
+        cc.setNuevoActual(cc.getNuevoActual()+cc.getSaldoInicial());
+        
+    }
+    public void IngresoDinero (CuentaBancaria_Entid cc){
+        Scanner leer = new Scanner(System.in);
+        System.out.println("cuanto dinero va a depositar");
+        double monto = leer.nextDouble();
+        cc.setNuevoActual(cc.getNuevoActual()+monto);
+        System.out.println(infoCuenta());
+        System.out.println("Su saldo actual es de $ " + cc.getNuevoActual());
+    }
+    public void RetirarDinero (CuentaBancaria_Entid cc){
+        Scanner leer = new Scanner(System.in).useDelimiter("\n");
+        System.out.println("cuanto dinero va a retirar");
+        double monto = leer.nextDouble();
+        if (monto<=cc.getNuevoActual()) {
+            double aux =cc.getNuevoActual()-monto;
+            cc.setNuevoActual(aux);
+            System.out.println(infoCuenta());
+            System.out.println("su saldo actual es de " + cc.getNuevoActual());
+        } else {
+            System.out.println(infoCuenta());
+            System.out.println("no hay saldo suficiente");
+        }
+    }
+    public void ExtraccionRapida (CuentaBancaria_Entid cc){
+        if (cc.getSaldoActual()>0) {
+            System.out.println("su saldo es de $ " + cc.getSaldoActual());
+            System.out.println("va a retirar el 20% : $ " + cc.getSaldoActual()*0.20);
+            cc.setSaldoActual(cc.getSaldoActual()-(cc.getSaldoActual()*0.20));
+           
+            System.out.println("su saldo es de $ " + cc.getSaldoActual());
+        }else{
+            System.out.println("no tiene saldo suficiente");
+        }
+    }
+    public void ConsultaSaldo(CuentaBancaria_Entid cc){
+        System.out.println("su saldo es de $ " + cc.getSaldoActual());
+    }
+    
+}

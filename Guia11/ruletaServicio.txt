@@ -1,0 +1,199 @@
+public class Main {
+
+    public static void main(String[] args) {
+        while (true) {
+            JuegoServicio js = new JuegoServicio();
+            Juego juego = js.llenarJuego();
+            js.ronda(juego);
+        }
+    }
+}
+package entidad;
+
+import java.util.ArrayList;
+
+public class Juego {
+
+    private ArrayList<Jugador> jugadores;
+    private RevolverDeAgua revolver;
+
+    public Juego() {
+    }
+
+    public Juego(ArrayList<Jugador> jugadores, RevolverDeAgua revolver) {
+        this.jugadores = jugadores;
+        this.revolver = revolver;
+    }
+
+    public ArrayList<Jugador> getJugadores() {
+        return jugadores;
+    }
+
+    public void setJugadores(ArrayList<Jugador> jugadores) {
+        this.jugadores = jugadores;
+    }
+
+    public RevolverDeAgua getRevolver() {
+        return revolver;
+    }
+
+    public void setRevolver(RevolverDeAgua revolver) {
+        this.revolver = revolver;
+    }
+
+}
+package entidad;
+
+public class Jugador {
+
+    private int id;
+    private String nombre = "Jugador ";
+    private boolean mojado = false;
+
+    public Jugador() {
+    }
+
+    public Jugador(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public boolean isMojado() {
+        return mojado;
+    }
+
+    public void setMojado(boolean mojado) {
+        this.mojado = mojado;
+    }
+
+}
+package entidad;
+
+import java.util.Random;
+
+public class RevolverDeAgua {
+
+    public RevolverDeAgua() {
+        Random random = new Random();
+        this.posicionActual = random.nextInt(6) + 1;
+        this.posicionAgua = random.nextInt(6) + 1;
+    }
+
+    public int getPosicionActual() {
+        return posicionActual;
+    }
+
+    public void setPosicionActual(int posicionActual) {
+        this.posicionActual = posicionActual;
+    }
+
+    public int getPosicionAgua() {
+        return posicionAgua;
+    }
+
+    public void setPosicionAgua(int posicionAgua) {
+        this.posicionAgua = posicionAgua;
+    }
+
+    private int posicionActual;
+    private int posicionAgua;
+
+    @Override
+    public String toString() {
+        return "RevolverDeAgua{" + "posicionActual=" + posicionActual + ", posicionAgua=" + posicionAgua + '}';
+    }
+}
+package servicio;
+
+import entidad.Juego;
+import entidad.Jugador;
+import entidad.RevolverDeAgua;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class JuegoServicio {
+
+    JugadorServicio js = new JugadorServicio();
+    RevolverDeAguaServicio rs = new RevolverDeAguaServicio();
+    Scanner leer = new Scanner(System.in).useDelimiter("\n");
+
+    public Juego llenarJuego() {
+        ArrayList<Jugador> jugadores = new ArrayList();
+        RevolverDeAgua revolver = rs.llenarRevolver();
+        System.out.println("Cuántos jugadores van a participar?");
+        int respuesta = leer.nextInt();
+        if (respuesta > 6 || respuesta < 1) {
+            respuesta = 6;
+        }
+        for (int i = 0; i < respuesta; i++) {
+            Jugador jugador = new Jugador(i + 1);
+            jugadores.add(jugador);
+        }
+        return new Juego(jugadores, revolver);
+    }
+
+    public void ronda(Juego juego) {
+        while (true) {
+            for (Jugador jugador : juego.getJugadores()) {
+                js.disparo(jugador, juego.getRevolver());
+                System.out.println(jugador.getNombre() + " " + jugador.getId() + " se dispara...");
+                if (jugador.isMojado()) {
+                    System.out.println(jugador.getNombre() + " " + jugador.getId() + " se mojó");
+                    return;
+                }
+                System.out.println(jugador.getNombre() + " " + jugador.getId() + " sobrevive una ronda más");
+            }
+        }
+    }
+}
+package servicio;
+
+import entidad.Jugador;
+import entidad.RevolverDeAgua;
+
+public class JugadorServicio {
+
+    RevolverDeAguaServicio rs = new RevolverDeAguaServicio();
+
+    public boolean disparo(Jugador jugador, RevolverDeAgua r) {
+        boolean mojar = rs.mojar(r);
+        if (mojar) {
+            jugador.setMojado(true);
+        }
+        rs.siguienteChorro(r);
+        return mojar;
+    }
+}
+package servicio;
+
+import entidad.RevolverDeAgua;
+
+public class RevolverDeAguaServicio {
+
+    public RevolverDeAgua llenarRevolver() {
+        return new RevolverDeAgua();
+    }
+
+    public boolean mojar(RevolverDeAgua revolver) {
+        return revolver.getPosicionActual() == revolver.getPosicionAgua();
+    }
+
+    public void siguienteChorro(RevolverDeAgua revolver) {
+        if (revolver.getPosicionActual() == 6) {
+            revolver.setPosicionActual(1);
+        } else {
+            revolver.setPosicionActual(revolver.getPosicionActual() + 1);
+        }
+    }
+}
